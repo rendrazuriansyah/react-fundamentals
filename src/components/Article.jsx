@@ -1,16 +1,13 @@
-function Article() {
-	const name = "Rendra";
-	const titles = ["Tutorial ReactJS", "Tutorial NextJS", "Tutorial NodeJS"];
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/prop-types */
+function Article(props) {
 	return (
 		<>
-			<div>Hello {name}</div>
+			<div>{props.name}</div>
 			<div>
-				{titles.map((title) => (
-					<>
-						<div key={title}>{title}</div>
-						<div key={title}>{title}</div>
-					</>
-				))}
+				{props.titles.map((title) => {
+					return <div>- {title}</div>;
+				})}
 			</div>
 		</>
 	);
