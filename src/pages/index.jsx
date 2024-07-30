@@ -5,12 +5,15 @@ import Search from "../components/Search";
 
 function Homepage() {
 	const [posts, setPosts] = useState(postsData);
+	const [totalPosts, setTotalPosts] = useState(0);
 
 	const onSearchChange = (value) => {
-		const filteredPosts = postsData.filter((item) =>
-			item.title.includes(value)
+		const filteredPosts = postsData.filter(
+			(item) => item.title.toLowerCase().includes(value.toLowerCase())
+			// item.title.includes(value)
 		);
 		setPosts(filteredPosts);
+		setTotalPosts(filteredPosts.length);
 	};
 
 	return (
@@ -18,7 +21,7 @@ function Homepage() {
 			<h1>Simple Blog</h1>
 			<Search
 				onSearchChange={onSearchChange}
-				postCount={posts.length}
+				totalPosts={totalPosts}
 			/>
 			{posts.map((props, index) => (
 				<Article
