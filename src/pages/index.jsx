@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import postsData from "../posts.json";
 import Article from "../components/Article";
 import Search from "../components/Search";
@@ -6,6 +6,13 @@ import Search from "../components/Search";
 function Homepage() {
 	const [posts, setPosts] = useState(postsData);
 	const [totalPosts, setTotalPosts] = useState(0);
+
+	useEffect(() => {
+		console.log("mounted");
+		return () => {
+			console.log("unmounted");
+		};
+	}, [posts]); // Re-render when posts change
 
 	const onSearchChange = (value) => {
 		const filteredPosts = postsData.filter(
