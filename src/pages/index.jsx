@@ -14,6 +14,14 @@ function Homepage() {
 			.then((json) => setExternalPosts(json));
 	}, []); // Re-render when posts change
 
+	useEffect(() => {
+		console.log("running berulang-ulang setiap posts berubah");
+	}, [posts]);
+
+	useEffect(() => {
+		console.log("1x running");
+	}, []);
+
 	const onSearchChange = (value) => {
 		const filteredPosts = postsData.filter(
 			(item) => item.title.toLowerCase().includes(value.toLowerCase())
