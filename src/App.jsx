@@ -1,6 +1,7 @@
 import "./App.css";
-import Home from "./pages";
 import { GlobalContext } from "./context";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routers";
 
 function App() {
 	const user = {
@@ -9,7 +10,7 @@ function App() {
 	return (
 		<div className="App">
 			<GlobalContext.Provider value={user}>
-				<Home />
+				<RouterProvider router={router} />
 			</GlobalContext.Provider>
 		</div>
 	);
