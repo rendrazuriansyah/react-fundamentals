@@ -6,21 +6,6 @@ import Search from "../components/Search";
 function Homepage() {
 	const [posts, setPosts] = useState(postsData);
 	const [totalPosts, setTotalPosts] = useState(0);
-	const [externalPosts, setExternalPosts] = useState([]);
-
-	useEffect(() => {
-		fetch("https://jsonplaceholder.typicode.com/posts")
-			.then((response) => response.json())
-			.then((json) => setExternalPosts(json));
-	}, []); // Re-render when posts change
-
-	useEffect(() => {
-		console.log("running berulang-ulang setiap posts berubah");
-	}, [posts]);
-
-	useEffect(() => {
-		console.log("1x running");
-	}, []);
 
 	const onSearchChange = (value) => {
 		const filteredPosts = postsData.filter(
@@ -30,6 +15,11 @@ function Homepage() {
 		setPosts(filteredPosts);
 		setTotalPosts(filteredPosts.length);
 	};
+	useEffect(() => {
+		fetch("https://jsonplaceholder.typicode.com/posts")
+			.then((response) => response.json())
+			.then((json) => setExternalPosts(json));
+	}, []); // Re-render when posts change
 
 	return (
 		<>
@@ -43,11 +33,6 @@ function Homepage() {
 					{...props} // Spread attributes
 					key={index}
 				/>
-			))}
-			<hr />
-			<h2>External Posts</h2>
-			{externalPosts.map((item, index) => (
-				<div key={index}>- {item.title}</div>
 			))}
 		</>
 	);
